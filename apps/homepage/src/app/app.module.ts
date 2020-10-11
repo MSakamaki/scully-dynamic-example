@@ -9,7 +9,21 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          loadChildren: () =>
+            import('./home/home.module').then((m) => m.HomeModule),
+        },
+        {
+          path: 'blog',
+          loadChildren: () =>
+            import('./blog/blog.module').then((m) => m.BlogModule),
+        },
+      ],
+      { initialNavigation: 'enabled' }
+    ),
     ScullyLibModule,
   ],
   providers: [],

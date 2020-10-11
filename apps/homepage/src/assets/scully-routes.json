@@ -1,1 +1,20 @@
-[{"route":"/"}]
+[
+  { "route": "/" },
+  {
+    "route": "/blog/angularjs-still-rocks",
+    "title": "Angular tutorial",
+    "description": "blog description",
+    "published": true,
+    "slug": "angularjs-still-rocks",
+    "sourceFile": "2020-10-11-blog.md"
+  },
+  {
+    "route": "/blog/___UNPUBLISHED___kg4njotn_qYGiEu5olMcc0E6zBxbpJD2Wt9aD6JQJ",
+    "title": "This is my post",
+    "description": "blog description",
+    "published": false,
+    "slugs": ["___UNPUBLISHED___kg4njotn_qYGiEu5olMcc0E6zBxbpJD2Wt9aD6JQJ"],
+    "slug": "___UNPUBLISHED___kg4njotn_qYGiEu5olMcc0E6zBxbpJD2Wt9aD6JQJ",
+    "sourceFile": "this-is-my-post.md"
+  }
+]
