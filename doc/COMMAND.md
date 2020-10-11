@@ -3,6 +3,7 @@
 ## initializeing
 
 ```sh
-@nrwl/angular
+npx ng add @nrwl/angular
+npx nx g @nrwl/angular:application homepage --routing --strict
 
 ```
