@@ -1,5 +1,5 @@
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
-
+import { get } from 'http';
 import { getSitemapPlugin } from '@gammastream/scully-plugin-sitemap';
 
 const SitemapPlugin = getSitemapPlugin();
@@ -30,6 +30,22 @@ setPluginConfig(SitemapPlugin, {
   },
 });
 
+/**
+ * sample of getting routing from a dynamic API
+ */
+const exRoutes = new Promise((resolve, reject) => {
+  get('http://localhost:3333/api/posts', (res) => {
+    res.setEncoding('utf8');
+    let data = '';
+    res.on('data', (d) => (data += d));
+    res.on('end', () => resolve(JSON.parse(data || '[]')));
+    res.on('error', reject);
+  });
+}).then((rows: { id: string }[]) => {
+  console.log('ROWS', rows);
+  return rows.map((row) => `/db/${row.id}`);
+});
+
 export const config: ScullyConfig = {
   projectRoot: './apps/homepage/src',
   projectName: 'homepage',
@@ -43,5 +59,5 @@ export const config: ScullyConfig = {
     },
   },
   defaultPostRenderers: ['seoHrefOptimise'],
-  extraRoutes: ['/db/p1', '/db/p2'],
+  extraRoutes: exRoutes,
 };
