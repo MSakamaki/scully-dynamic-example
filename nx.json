@@ -29,6 +29,9 @@
     "homepage-e2e": {
       "tags": [],
       "implicitDependencies": ["homepage"]
+    },
+    "blog-api": {
+      "tags": []
     }
   }
 }

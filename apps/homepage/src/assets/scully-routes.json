@@ -16,5 +16,7 @@
     "slugs": ["___UNPUBLISHED___kg4njotn_qYGiEu5olMcc0E6zBxbpJD2Wt9aD6JQJ"],
     "slug": "___UNPUBLISHED___kg4njotn_qYGiEu5olMcc0E6zBxbpJD2Wt9aD6JQJ",
     "sourceFile": "this-is-my-post.md"
-  }
+  },
+  { "route": "/db/p1" },
+  { "route": "/db/p2" }
 ]

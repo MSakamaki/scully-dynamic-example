@@ -21,6 +21,13 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
           loadChildren: () =>
             import('./blog/blog.module').then((m) => m.BlogModule),
         },
+        {
+          path: 'db',
+          loadChildren: () =>
+            import('./dynamic-blog/dynamic-blog.module').then(
+              (m) => m.DynamicBlogModule
+            ),
+        },
       ],
       { initialNavigation: 'enabled' }
     ),

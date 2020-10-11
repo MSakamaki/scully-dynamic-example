@@ -11,4 +11,5 @@ export const config: ScullyConfig = {
       },
     },
   },
+  extraRoutes: ['/db/p1', '/db/p2'],
 };

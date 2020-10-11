@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { DynamicBlogComponent } from './dynamic-blog.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home.component';
 
-const routes: Routes = [{ path: '', component: HomeComponent }];
+const routes: Routes = [{ path: ':id', component: DynamicBlogComponent }];
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [DynamicBlogComponent],
   imports: [CommonModule, HttpClientModule, RouterModule.forChild(routes)],
 })
-export class HomeModule {}
+export class DynamicBlogModule {}

@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "homepage:build"
+            "browserTarget": "homepage:build",
+            "proxyConfig": "apps/homepage/src/proxy.conf.js"
           },
           "configurations": {
             "production": {
@@ -119,6 +120,56 @@
           "options": {
             "tsConfig": ["apps/homepage-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/homepage-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "blog-api": {
+      "root": "apps/blog-api",
+      "sourceRoot": "apps/blog-api/src",
+      "projectType": "application",
+      "prefix": "blog-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/blog-api",
+            "main": "apps/blog-api/src/main.ts",
+            "tsConfig": "apps/blog-api/tsconfig.app.json",
+            "assets": ["apps/blog-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/blog-api/src/environments/environment.ts",
+                  "with": "apps/blog-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "blog-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/blog-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/blog-api/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

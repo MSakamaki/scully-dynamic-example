@@ -8,3 +8,9 @@
     </span>
   </li>
 </ul>
+
+<ul>
+  <li *ngFor="let dblog of dblog$ | async" [routerLink]="['db', dblog.id]">
+    {{ dblog.id }} {{ dblog.data }}
+  </li>
+</ul>

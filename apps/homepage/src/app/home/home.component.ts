@@ -1,6 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
+import {
+  isScullyRunning,
+  ScullyRoute,
+  ScullyRoutesService,
+} from '@scullyio/ng-lib';
 import { Observable } from 'rxjs';
+import { shareReplay, tap } from 'rxjs/operators';
+import { TransferStateService } from '@scullyio/ng-lib';
+
+const url = 'http://localhost:3333/api/posts';
+
+interface IPostData {
+  id: string;
+  data: string;
+}
 
 @Component({
   selector: 'scully-sample-home',
@@ -10,12 +24,16 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
   links$: Observable<ScullyRoute[]> = this.scully.available$;
 
-  constructor(private scully: ScullyRoutesService) {}
+  dblog$ = this.transferState.useScullyTransferState(
+    'post',
+    this.http.get<IPostData[]>(url)
+  );
 
-  ngOnInit() {
-    // debug current pages
-    this.links$.subscribe((links) => {
-      console.log(links);
-    });
-  }
+  constructor(
+    private scully: ScullyRoutesService,
+    private http: HttpClient,
+    private transferState: TransferStateService
+  ) {}
+
+  ngOnInit() {}
 }
