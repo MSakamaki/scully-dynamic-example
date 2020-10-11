@@ -39,6 +39,8 @@ npx ng generate @scullyio/init:post --name="This is my post"
 
 ```
 
+### dynamic blog
+
 ```sh
 npm install -D @nrwl/nest
 npx nx g @nrwl/nest:application blog-api
@@ -48,4 +50,10 @@ npx nx g @nestjs/schematics:controller posts --sourceRoot=apps/blog-api/src/app
 npx ng generate module dynamic-blog --route=db --module=app
 
 
+```
+
+### sitemap
+
+```sh
+npm i @gammastream/scully-plugin-sitemap xmlbuilder fast-xml-parser -D
 ```
